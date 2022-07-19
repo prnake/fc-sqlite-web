@@ -935,7 +935,7 @@ def initialize_app(password=None, _db_prefix=None, url_prefix=None):
 
 
 def initialize_database(filename, read_only=False, extensions=None):
-    filepath = "/tmp/" + filename
+    filepath = f"{db_prefix}/{filename}"
     global datasets
     global migrators
 

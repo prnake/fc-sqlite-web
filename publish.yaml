@@ -1,0 +1,79 @@
+# 规范文档参考:
+# 中文：https://github.com/Serverless-Devs/Serverless-Devs/blob/master/spec/zh/0.0.2/serverless_package_model/package_model.md#应用模型规范
+# English: https://github.com/Serverless-Devs/Serverless-Devs/blob/master/spec/en/0.0.2/serverless_package_model/package_model.md#Application-model-specification
+# --------------
+# Package 开发发布最佳实践:
+#   - [社区讨论 #62](https://github.com/Serverless-Devs/Serverless-Devs/discussions/62);
+#   - [社区讨论 #407](https://github.com/Serverless-Devs/Serverless-Devs/discussions/407);
+#   - [社区讨论 #439](https://github.com/Serverless-Devs/Serverless-Devs/discussions/439);
+
+Type: Application
+Name: fc-sqlite-web
+Provider:
+  - 阿里云 
+Version: 0.0.2
+Description: 快速部署一个 sqlite-web 管理系统到阿里云函数计算
+HomePage: https://github.com/prnake/fc-sqlite-web
+Tags: #标签详情
+  - Web框架
+  - Sqlite
+Category: Web框架 # 基础云服务/Web框架/Web应用/人工智能/音视频处理/图文处理/监控告警/大数据/IoT/新手入门/其他
+Service: # 使用的服务
+  硬盘挂载: # 函数计算/容器服务/镜像服务/消息队列/工作流/CDN/对象存储/表格存储/MNS/日志服务/API网关/数据库/解析服务/云应用/其他
+    Authorities:
+      - AliyunNASFullAccess
+Parameters:
+  type: object
+  additionalProperties: false # 不允许增加其他属性
+  required: # 必填项
+    - region
+    - serviceName
+    - functionName
+    - sqliteWebPrefix
+    - sqliteWebPassword
+  properties:
+    region:
+      title: 地域
+      type: string
+      default: cn-hangzhou
+      description: 创建应用所在的地区
+      enum:
+        - cn-beijing
+        - cn-hangzhou
+        - cn-shanghai
+        - cn-qingdao
+        - cn-zhangjiakou
+        - cn-huhehaote
+        - cn-shenzhen
+        - cn-chengdu
+        - cn-hongkong
+        - ap-southeast-1
+        - ap-southeast-2
+        - ap-southeast-3
+        - ap-southeast-5
+        - ap-northeast-1
+        - eu-central-1
+        - eu-west-1
+        - us-west-1
+        - us-east-1
+        - ap-south-1
+    serviceName:
+      title: 服务名
+      type: string
+      default: fc-sqlite-web
+      description: 应用所属的函数计算服务, 如果您想管理某个 Service 对应的 NAS, 则使用这个 ServiceName。
+    functionName:
+      title: 函数名
+      type: string
+      default: sqlite-web
+      description: 应用的函数名称
+    sqliteWebPrefix:
+      title: 数据库前缀
+      type: string
+      default: /mnt/auto
+      description: 应用访问数据库的默认前缀（注意：应用可以通过..访问到上级目录）
+    sqliteWebPassword:
+      title: 管理密码
+      type: string
+      default: 
+      description: 应用的管理密码

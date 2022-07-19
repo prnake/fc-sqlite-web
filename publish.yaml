@@ -11,7 +11,7 @@ Type: Application
 Name: fc-sqlite-web
 Provider:
   - 阿里云 
-Version: 0.0.2
+Version: 0.0.3
 Description: 快速部署一个 sqlite-web 管理系统到阿里云函数计算
 HomePage: https://github.com/prnake/fc-sqlite-web
 Tags: #标签详情
